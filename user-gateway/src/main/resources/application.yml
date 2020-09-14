@@ -1,0 +1,48 @@
+server:
+  port: 1001
+spring:
+  application:
+    name: user-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service-route
+          #这里uri采用lb://服务名的方式配置路由，满足一个服务多个实例的场景
+          uri: lb://user-service
+          #路由断言：可以匹配映射路径
+          predicates:
+            - Path=/**
+          filters: #以下二者不可同时存在
+            #添加请求路径的前缀过滤器，在path后添加一个前缀可以匹配到没有指定前缀的请求例如http://user-service/1
+#            - PrefixPath=/user
+            #添加请求路径中的去除前缀过滤器，可以去掉指定个数的前缀
+#            - StripPrefix=1
+            #配置一个自定义过滤器，用于获取请求路径中的参数name的值，对应自定义局部过滤器
+            - MyParam=name
+
+      #添加默认过滤器，对所有route都生效。添加响应头
+      default-filters:
+        - AddResponseHeader=X-Response-Foo, Bar
+
+      #配置全局跨域
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - http://docs.spring.io
+            allowedMethods:
+              - GET
+
+
+
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1000/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+

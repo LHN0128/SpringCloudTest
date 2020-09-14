@@ -1,0 +1,33 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+    #配置拉取服务列表间隔时间
+    registry-fetch-interval-seconds: 30
+
+spring:
+  application:
+    name: user-consumer
+server:
+  port: 8082
+
+#配置服务降级时间（ms）
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+feign:
+  #开启请求压缩
+  compression:
+    request:
+      enabled: true
+      mime-types: text/html,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+logging:
+  level:
+    com.example: debug
