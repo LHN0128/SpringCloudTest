@@ -1,0 +1,18 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: config-server
+  #指定配置文件的仓库
+  #启动配置中心微服务，访问配置中心下的配置文件可以显示，说明搭建成功
+  #实时从github中获取配置文件
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/LHN0128/SpringCloudTest.git
+          skipSslValidation: true #遇到SSL安全问题跳过ssl
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:1000/eureka
