@@ -22,4 +22,6 @@ eureka:
   #配置服务的续约
     lease-expiration-duration-in-seconds: 90
     lease-renewal-interval-in-seconds: 30
+testBus:
+  name: test1
 
