@@ -24,4 +24,4 @@ eureka:
     lease-renewal-interval-in-seconds: 30
 
  test:
-    name: test1
+  name: test1
