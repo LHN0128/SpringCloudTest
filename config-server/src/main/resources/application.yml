@@ -12,7 +12,22 @@ spring:
         git:
           uri: https://github.com/LHN0128/SpringCloudTest.git
           skipSslValidation: true #遇到SSL安全问题跳过ssl
+
+
+  rabbitmq:
+    port: 5672
+    username: chouchou
+    password: chouchou
+    host: localhost
+    virtual-host: chou's host
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:1000/eureka
+
+#设置配置中心暴露触发消息总线的地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

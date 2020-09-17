@@ -5,20 +5,21 @@ import com.example.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+@RefreshScope//配置自动更新配置文件
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
-//    @Value("${testBus.name}")
-//    private String name;
+    @Value("${testBus.name}")
+    private String name;
 
 
 
@@ -34,7 +35,7 @@ public class UserController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
-//        System.out.println("配置文件中的testBus的属性值为："+name);
+        System.out.println("配置文件中的testBus的属性值为："+name);
         return userService.queryById(id);
     }
 }

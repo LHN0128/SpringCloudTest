@@ -13,6 +13,12 @@ spring:
         enabled: true
       #配置中心服务名
         service-id: config-server
+  rabbitmq:
+    port: 5672
+    username: chouchou
+    password: chouchou
+    host: localhost
+    virtual-host: chou's host
 eureka:
   client:
     service-url:
